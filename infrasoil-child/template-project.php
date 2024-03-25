@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 Template Name: Project
 */
@@ -22,10 +22,7 @@ global $avia_config;
 
 		<div class='container'>
 
-		<?php if ( function_exists('yoast_breadcrumb') ) {
-			yoast_breadcrumb('<p id="breadcrumbs">','</p>');
-		} ?>
-
+	
 			<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
 			<?php //echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>
@@ -43,7 +40,7 @@ global $avia_config;
 			<?php echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>
 
 			<!--end content-->
-			</main>
+             			</main>
 
 			<?php
 			// $avia_config['currently_viewing'] = 'page';
@@ -51,7 +48,17 @@ global $avia_config;
 			?>
 
 		</div><!--end container-->
+        <div class='container2'>
+         <?php
+                    /* Run the loop to output the posts.
+                    * If you want to overload this in a child theme then include a file
+                    * called loop-page.php and that will be used instead.
+                    */
 
+                    $avia_config['size'] = avia_layout_class( 'main' , false) == 'entry_without_sidebar' ? '' : 'entry_with_sidebar';
+                    get_template_part( 'includes/loop', 'portfolio-single' );
+                    ?>
+                    </div>
 	</div><!-- close default .container_wrap element -->
 
 

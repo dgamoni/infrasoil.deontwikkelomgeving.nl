@@ -5,7 +5,7 @@ class Biq_Project_Title extends WP_Widget {
 	/** constructor */
 	function __construct() {
 
-		parent::WP_Widget( false, $name = __( 'Big Project Title', TEXTDOMAIN ) );
+		parent::WP_Widget( false, $name = __( 'Titel groot project', TEXTDOMAIN ) );
 
 	}
 

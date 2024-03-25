@@ -77,8 +77,31 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
 
 	        //var res = $.parseJSON(data);
 	        //console.log(data.results);
+
+	      //   // fix grid
+	      //   //console.log(getParameterByName_('sfid',options.url));
+	      //   var serach_id = getParameterByName_('sfid',options.url);
+	      //   if(serach_id == '1441') {
+			    // var items = $('.search-filter-results .grid-entry').not('.projectchild');
+			    // //console.log(items);
+			    // items.each(function(index, el) {
+			    //     $(this).addClass('element_'+index);
+			    // });
+	      //   }//end
+
+
+	        var zoom = false;
+	        if(    getUrlVars('_sfm_infrasoil_project_date_start',options.url)
+	        	|| getUrlVars('_sft_project_expertises',options.url)
+	        	|| getUrlVars('_sft_project_areas',options.url)) {
+	        		console.log('yes');
+	        		zoom = false;
+	        }
+
 	        var reshtml = $.parseHTML(data.results);
-	        get_coord_element(reshtml);
+	        get_coord_element(reshtml, zoom);
+
+
 		}
         if (originalSuccess != null) {
             originalSuccess(data);
@@ -86,6 +109,13 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     };
 });
 
+function checkurl_field(url,field) {
+	if(url.indexOf('?' + field + '=') != -1) {
+	    return true;
+	} else  {
+		return false
+	}
+};
 
 function checkurl(url) {
 	var field = 'sfid';
@@ -111,9 +141,21 @@ function getUrlVars(sParam, url) {
     }
 };
 
-function get_coord_element(element) {
+function getParameterByName_(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function get_coord_element(element, zoom) {
 
 	var x = [];
+	$portugal_Lat = '52.763344';
+	$portugal_Long = '5.658109';
 
 	$(element).each(function(m){
 		var el = $(this),
@@ -154,7 +196,16 @@ function get_coord_element(element) {
 
 			showMarker(myLatLng);
 		}
-		map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+		//map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+		if(zoom) {
+			map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+			map.setZoom(8);
+			//console.log('setzoom 9');
+		} else {
+			var global_center = new google.maps.LatLng($portugal_Lat, $portugal_Long);
+			map.setCenter(global_center);
+			map.setZoom(8);
+		}
 
 	}
 	else if (x.length == 1) {
@@ -169,10 +220,19 @@ function get_coord_element(element) {
 			lat = bspl[0],
 			lng = bspl[1];
 		var myLatLng = new google.maps.LatLng(lat,lng);
-		map.panTo(myLatLng);
-		map.setZoom(17);
+		//map.panTo(myLatLng);
+		//map.setZoom(17);
 		//console.log(map.getBounds().contains(myLatLng));
 		showMarker(myLatLng);
+		if(zoom) { 
+			map.panTo(myLatLng);
+			map.setZoom(9);
+			//console.log('setzoom 9');
+		} else {
+			var global_center = new google.maps.LatLng($portugal_Lat, $portugal_Long);
+			map.setCenter(global_center);
+			map.setZoom(8);	
+		}
 
 	}else {
 		//console.log('else');console.log(x);
@@ -257,6 +317,7 @@ function get_coord() {
 
 	var places = [];
 	var markers = [];
+	var mylatlngbounds = new google.maps.LatLngBounds();
 	//window.map;
 
 	if ($(".gmap").exists()) {
@@ -268,8 +329,9 @@ function get_coord() {
 			// beginmap_Lat = beginmap.data('lat') !== '' ? parseFloat(beginmap.data('lat')) : '';
 			// console.log(beginmap_Lat);
 			// beginmap_Long = beginmap.data('lng') !== '' ? parseFloat(beginmap.data('lng')) : '';
-			$portugal_Lat = '52.04498589999999';
-			$portugal_Long = '5.566772399999991';
+			$portugal_Lat = '52.763344';
+			$portugal_Long = '5.658109';
+
 
 			var blueOceanStyles = [
 			  {
@@ -299,7 +361,10 @@ function get_coord() {
 				disableDefaultUI: false,
 				scaleControl    : false,
 				scrollwheel     : false,
-				mapTypeId		: 'satellite'
+				mapTypeId		: 'satellite',
+				// panControl		: true,
+				// zoomControl		: true,
+				// draggable		: true,
 			}
 			// var map = new google.maps.Map(document.getElementById('g_map'), mapOptions);
 			// setMarkers(map, places);
@@ -384,6 +449,7 @@ function get_coord() {
 
 			function setMarkers(map, locations) {
 				var latlngbounds = new google.maps.LatLngBounds();
+				//mylatlngbounds = new google.maps.LatLngBounds();
 				// var image = new google.maps.MarkerImage('',
 				// 	new google.maps.Size(72, 72),
 				// 	new google.maps.Point(0, 0),
@@ -404,15 +470,16 @@ function get_coord() {
 				for (var i = 0; i < places.length; i++) {
 					var myLatLng = new google.maps.LatLng(locations[i][1], locations[i][2], locations[i][3]);
 					latlngbounds.extend(myLatLng);
+					//mylatlngbounds.extend(myLatLng);
 					//console.log(locations[i][5]);
 					if(locations[i][5]) {
 						image = {
-					        url: js_url.imgurl+'map-big-project.png', 
+					        url: js_url.imgurl+'map-big-project.png',
 					    };
 					} else {
 						image = {
 					        url: js_url.imgurl+'marker.png', 
-					    };						
+					    };
 					}
 					var marker = new google.maps.Marker({
 						position : myLatLng,
@@ -420,8 +487,11 @@ function get_coord() {
 						icon     : image,
 						draggable: false,
 						img      : locations[i][3],
-						clickable: true
+						clickable: true,
+						//optimized: false
 					});
+
+					mylatlngbounds.extend(marker.getPosition());
 
 
 //SnazzyInfoWindow
@@ -551,21 +621,63 @@ function get_coord() {
 						  });
 
 					} //end for
+					map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+					map.setZoom(8);
+					var global_center = new google.maps.LatLng($portugal_Lat, $portugal_Long);
+					map.setCenter(global_center);
+
+
+					//mapsObject.panBy(200, 100);
+
+					//map.fitBounds(mylatlngbounds);
+
+					//console.log(latlngbounds.getCenter());
+					//console.log(map.fitBounds(mylatlngbounds));
+
+					// var gmap_ww = $(".searchandfilter_content_map").width();
+					// console.log(gmap_ww);
+					//   if(gmap_ww<600){
+					//   	 map.setZoom(6);
+					//   }
+
+					//var mycenter = new google.maps.LatLng(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+
 			} //end setMarker
 
 			function hideAllInfoWindows(map) {
 			   markers.forEach(function(marker) {
 			     marker.info.close(map, marker);
-			  }); 
+			  });
 			};
+
+			// google.maps.event.addDomListener(map, 'idle', function() {
+			//     center = map.getCenter();
+			// });
 
 			//Resize Function
 			google.maps.event.addDomListener(window, "resize", function() {
 				var center = map.getCenter();
+				//console.log(center);
+				//var center = map.getBounds().getCenter();
 				resizeMap();
 				google.maps.event.trigger(map, "resize");
 				map.setCenter(center);
+
+ 				//map.panTo(mylatlngbounds);
+ 				//console.log(mylatlngbounds);
+
+				//map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+
+				//var location = new google.maps.LatLng(center .lat(), center .lng());
+				//map.setCenter(location);
+				// var latLng_ = new google.maps.LatLng(center .lat(), center .lng());
+			 //    map.setCenter(latLng_);
 			});
+
+			// google.maps.event.addListenerOnce(map, "center_changed", function() {
+			// 	var oldCenter = map.getCenter();
+			// 	map.setCenter(oldCenter);
+			// });
 
 			// google.maps.event.addListener(map, 'click', function() {
 			//     if (marker.info) {
@@ -578,13 +690,52 @@ function get_coord() {
 			  var h = window.innerHeight;
 			  var w = window.innerWidth;
 			  var gmap_w = $(".searchandfilter_content_map").width();
+			  var gmap_h = $(".searchandfilter_content_map").height();
 			  console.log(gmap_w);
+			  console.log(w);
 			  $("#g_map").width(gmap_w);
-			  //$("#g_map").height(h-50);
+			  //map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+
+			  // if(gmap_w<600){
+			  // 	 map.setZoom(7);
+			  // } else {
+			  // 	 map.setZoom(8);
+			  // }
+
+			  //$("#g_map").height(h-100);
 
 			}
 
-			resizeMap();
+			function resizeMap_init(){
+
+			  var h = window.innerHeight;
+			  var w = window.innerWidth;
+			  var gmap_w = $(".searchandfilter_content_map").width();
+			  var gmap_h = $(".searchandfilter_content_map").height();
+			  console.log('init'+gmap_w);
+			  $("#g_map").width(gmap_w);
+			  //map.setZoom(7);
+				//map.setCenter(mylatlngbounds.getCenter(), map.fitBounds(mylatlngbounds));
+			  // if(gmap_w<600){
+			  // 	 map.setZoom(7);
+			  // } else {
+			  // 	 map.setZoom(8);
+			  // }
+
+			  //$("#g_map").height(h-100);
+
+			  	var center_ = map.getCenter();
+				google.maps.event.trigger(map, "resize");
+				map.setCenter(center_);
+
+			}
+
+			//resizeMap();
+			resizeMap_init();
+
+					//map.setCenter(mylatlngbounds.getCenter(), map.fitBounds(mylatlngbounds));
+					//mapsObject.panBy(200, 100);
+					//map.fitBounds(mylatlngbounds);
 
 		} //end initialize
 
@@ -608,8 +759,8 @@ function get_coord() {
 			// beginmap_Lat = beginmap.data('lat') !== '' ? parseFloat(beginmap.data('lat')) : '';
 			// console.log(beginmap_Lat);
 			// beginmap_Long = beginmap.data('lng') !== '' ? parseFloat(beginmap.data('lng')) : '';
-			$portugal_Lat = '52.04498589999999';
-			$portugal_Long = '5.566772399999991';
+			$portugal_Lat = '52.763344';
+			$portugal_Long = '5.658109';
 
 			var blueOceanStyles = [
 			  {
@@ -845,12 +996,13 @@ function get_coord() {
 						  });
 
 					} //end for
+					map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
 			} //end setMarker
 
 			function hideAllInfoWindows(map) {
 			   markers.forEach(function(marker) {
 			     marker.info.close(map, marker);
-			  }); 
+			  });
 			};
 
 			//Resize Function

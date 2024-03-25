@@ -1,57 +1,67 @@
+
+
+
  jQuery(document).ready(function($){
 
 
-// var d = new Date(); 
-// console.log(d);
-// $('#dp1492006705189').datepicker( "setDate", d);
 
-// $("#dp1492007233064").val(startDate.toString('MM/dd/yyyy'));
-// $("#dp1492006705189").val(endDate.toString('MM/dd/yyyy'));
-	
-	// $('#dp1492006705189').click(function(event) {
-	// 	var d = new Date(); 
-	// 	console.log(d);
-	// 	$('#dp1492006705189').datepicker( "setDate", d);
-	// });
-
-//console.log($('#dp1492094016761').val());
-
-
-		// $('#dp1492094016761').datepicker({
-		//   onSelect: function(dateText) {
-		//     display("Selected date: " + dateText + "; input's current value: " + this.value);
-		//   }
-		// });
-
-
-        // $("#dp1492094016761").datepicker({
-        //     dateFormat: "dd-M-yy",
-        //     minDate: 0,
-        //     onSelect: function (date) {
-        //         var dt2 = $('#dp1492094809499');
-        //         var startDate = $(this).datepicker('getDate');
-        //         console.log(startDate);
-        //         var minDate = $(this).datepicker('getDate');
-        //         dt2.datepicker('setDate', minDate);
-        //         startDate.setDate(startDate.getDate() + 30);
-        //         //sets dt2 maxDate to the last day of 30 days window
-        //         dt2.datepicker('option', 'maxDate', startDate);
-        //         dt2.datepicker('option', 'minDate', minDate);
-        //     }
-        // });
-
-    // $('#dp1492094016761').datepicker( {
-    //     selectWeek: true,
-    //     inline: true,
-    //     startDate: '01/01/2000',
-    //     firstDay: 1,
-    // }).bind('dateSelected', function(e, selectedDate, $td) {
-    //     alert(selectedDate);
+    // var items = $('.search-filter-results .grid-entry').not('.projectchild');
+    // //console.log(items);
+    // items.each(function(index, el) {
+    //     $(this).addClass('element_'+index);
     // });
 
- //  $( document ).on( "click", "#dp1492094016761", function() {
-	//   console.log( $( this ) );
-	// });
-             
+//collapse_up
+//collapse_content
+//collapse_close
 
- });
+    $(".collapse_content").addClass('myhide');
+    $(".collapse_close").addClass('myhide');
+
+    $( ".collapse_up" ).click(function() {
+        console.log('collapse_up');
+        $expand = $(this).parents('.container_wrap').next('.collapse_content');
+        //console.log($expand);
+        $(this).addClass('myhide')
+        $expand.removeClass('myhide');
+        $expand.find('.collapse_close').removeClass('myhide');
+    });
+    $( ".collapse_close" ).click(function() {
+        console.log('collapse_close');
+        $expand = $(this).parents('.collapse_content');
+        $upbutton = $expand.prev('.container_wrap').find('.collapse_up');
+        console.log($upbutton);
+        $(this).addClass('myhide')
+        $expand.addClass('myhide');
+        $upbutton.removeClass('myhide');
+    });
+
+
+  //$.ajaxSetup({ cache: false });
+
+
+});
+
+
+// Avoid `console` errors in browsers that lack a console.
+// (function() {
+//     var method;
+//     var noop = function () {};
+//     var methods = [
+//         'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+//         'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+//         'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+//         'timeStamp', 'trace', 'warn'
+//     ];
+//     var length = methods.length;
+//     var console = (window.console = window.console || {});
+
+//     while (length--) {
+//         method = methods[length];
+
+//         // Only stub undefined methods.
+//         if (!console[method]) {
+//             console[method] = noop;
+//         }
+//     }
+// }());

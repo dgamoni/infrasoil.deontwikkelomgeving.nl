@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 // include script and css for product cpt
-add_action( 'wp_enqueue_scripts', 'product_scripts_method' ); 
+add_action( 'wp_enqueue_scripts', 'product_scripts_method' );
 function product_scripts_method() {
 	wp_register_script('search_scripts', CORE_URL . '/js/search.js', array('jquery'), '', true);
 	wp_enqueue_script( 'search_scripts' );

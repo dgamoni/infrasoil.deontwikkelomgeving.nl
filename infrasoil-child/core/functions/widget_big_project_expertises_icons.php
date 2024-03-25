@@ -1,11 +1,11 @@
 <?php
 
-class Biq_Project_Areas_Icons extends WP_Widget {
+class Biq_Project_Expertises_Icons extends WP_Widget {
 
 	/** constructor */
 	function __construct() {
 
-		parent::WP_Widget( false, $name = __( 'Big Project Areas icons​', TEXTDOMAIN ) );
+		parent::WP_Widget( false, $name = __( 'Iconen grote projecten', TEXTDOMAIN ) );
 
 	}
 
@@ -24,40 +24,34 @@ class Biq_Project_Areas_Icons extends WP_Widget {
 					<span style="color: #4bb6e8;">WERK</span>VELDEN
 				</h1>
 			</div>
-			<?php 
+			<?php
 
 				$args = array(
-					'taxonomy' => 'project_areas',
+					'taxonomy' => 'project_expertises',
 					'hide_empty' => false,
 					'orderby' => 'term_order'
 				);
 				$terms = get_terms( $args );
 				//var_dump($terms);
 
-				foreach ($terms as $key => $term) { 
-					$infrasoil_expertises_icon = get_field('infrasoil_expertises_icon','project_areas_'.$term->term_id);
-					$infrasoil_expertises_link = get_field('infrasoil_expertises_link','project_areas_'.$term->term_id);
+				foreach ($terms as $key => $term) {
+					$infrasoil_expertises_icon = get_field('infrasoil_expertises_icon','project_expertises_'.$term->term_id);
 					//var_dump($infrasoil_expertises_icon);
 					$keys = $key+1;
 					//$term->count
 					?>
 					<div class="flex_column_ av_one_sixth_custom">
-						<?php if($infrasoil_expertises_link):
-							echo '<a href="'.$infrasoil_expertises_link.'">';
-						 endif; ?>
-							<div class="sprite_big2 <?php if( !$infrasoil_expertises_icon ): echo 'sprite_big sprite_big-WERKVELDEN-NUMMERING-'.$keys; endif;?>">
-								<?php if( $infrasoil_expertises_icon ): ?>
-									<img src="<?php echo $infrasoil_expertises_icon; ?>" />
-								<?php endif; ?>
-							</div>
-						<?php if($infrasoil_expertises_link):
-							echo '</a>';
-						 endif; ?>
+						<!-- <div class="sprite_big sprite_big-WERKVELDEN-NUMMERING-<?php echo $term->count; ?>"> -->
+						<div class="sprite_big2 <?php if( !$infrasoil_expertises_icon ): echo 'sprite_big sprite_big-WERKVELDEN-NUMMERING-'.$keys; endif;?>">
+							<?php if( $infrasoil_expertises_icon ): ?>
+								<img src="<?php echo $infrasoil_expertises_icon; ?>" />
+							<?php endif; ?>
+						</div>
 						<span class="expertises_title"><?php echo $term->name; ?></span>
 					</div>
 				<?php }
 			?>
-			
+
 		</div>
 		<?php
 	}
@@ -85,4 +79,4 @@ class Biq_Project_Areas_Icons extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', create_function( '', 'return register_widget("Biq_Project_Areas_Icons");' ) );
+add_action( 'widgets_init', create_function( '', 'return register_widget("Biq_Project_Expertises_Icons");' ) );

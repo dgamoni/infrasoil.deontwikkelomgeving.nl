@@ -335,14 +335,14 @@ if ( !class_exists( 'avia_post_grid' ) )
                                                 'image_size' => 'portfolio',
 		                                 		'post_type'	=> 'portfolio',
 		                                 		'taxonomy'  => 'project_expertises',
-		                                 		'one_column_template' => 'special',
+      		                                 	'one_column_template' => 'special',
 		                                 		'set_breadcrumb' => true, //no shortcode option for this, modifies the breadcrumb nav, must be false on taxonomy overview
 		                                 		'class'		=> "",
 		                                 		'custom_markup'	=> '',
 		                                 		'fullscreen'	=> false,
 		                                 		'query_orderby' => 'date',
 		                                 		'query_order' => 'DESC',
-		                                 		), $atts, 'av_portfolio');
+                                               ), $atts, 'av_portfolio');
 
 
 
@@ -802,6 +802,7 @@ if ( !class_exists( 'avia_post_grid' ) )
 				$query = array(	'orderby' 	=> $params['query_orderby'],
 								'order' 	=> $params['query_order'],
 								'paged' 	=> $page,
+								'post_parent'	=> 0,//fix dgamoni
 								'posts_per_page' => $params['items'],
 								'post_type' => $params['post_type'],
 								'tax_query' => array( 	array( 	'taxonomy' 	=> $params['taxonomy'],
@@ -814,6 +815,7 @@ if ( !class_exists( 'avia_post_grid' ) )
 				$query = array(	'orderby' 	=> $params['query_orderby'],
 								'order' 	=> $params['query_order'],
 								'paged'		=> $page,
+								'post_parent'	=> 0,//fix dgamoni
 								'posts_per_page' => $params['items'],
 								'post_type' => $params['post_type']);
 			}

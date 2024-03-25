@@ -46,7 +46,7 @@ function get_firms_places() {
 		// 	'hide_empty' => false,
 		// );
 		//$terms = get_terms( $args_tax );
-		$term_list = wp_get_post_terms( get_the_ID(), 'project_expertises', array("fields" => "names"));
+		$term_list = wp_get_post_terms( get_the_ID(), 'project_expertises', array("fields" => "names","orderby" => "term_order"));
 		$project_expertises = '<ul class="expertlist">';
 		$project_expertises .= '<p class="expertlist_tile">Expertises</p>';
 		foreach ($term_list as $key => $term) { 

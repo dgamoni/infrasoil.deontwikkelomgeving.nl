@@ -3,9 +3,9 @@
 function infrasoil_tax_project_expertises() {
 
 	$labels = array(
-		'name'                       => _x( 'Project expertises', 'Project expertises', 'infrasoil' ),
-		'singular_name'              => _x( 'Project expertises', 'Project expertises', 'infrasoil' ),
-		'menu_name'                  => __( 'Project expertises', 'infrasoil' ),
+		'name'                       => _x( 'Expertises', 'Expertises', 'infrasoil' ),
+		'singular_name'              => _x( 'Expertises', 'Expertises', 'infrasoil' ),
+		'menu_name'                  => __( 'Expertises', 'infrasoil' ),
 		'all_items'                  => __( 'All Items', 'infrasoil' ),
 		'parent_item'                => __( 'Parent Item', 'infrasoil' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'infrasoil' ),
@@ -41,9 +41,9 @@ add_action( 'init', 'infrasoil_tax_project_expertises', 0 );
 function infrasoil_tax_project_areas() {
 
 	$labels = array(
-		'name'                       => _x( 'Project areas', 'Project areas', 'infrasoil' ),
-		'singular_name'              => _x( 'Project areas', 'Project areas', 'infrasoil' ),
-		'menu_name'                  => __( 'Project areas', 'infrasoil' ),
+		'name'                       => _x( 'Werkvelden', 'Werkvelden', 'infrasoil' ),
+		'singular_name'              => _x( 'Werkvelden', 'Werkvelden', 'infrasoil' ),
+		'menu_name'                  => __( 'Werkvelden', 'infrasoil' ),
 		'all_items'                  => __( 'All Items', 'infrasoil' ),
 		'parent_item'                => __( 'Parent Item', 'infrasoil' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'infrasoil' ),
@@ -75,3 +75,4 @@ function infrasoil_tax_project_areas() {
 
 }
 add_action( 'init', 'infrasoil_tax_project_areas', 0 );
+

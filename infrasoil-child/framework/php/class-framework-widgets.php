@@ -540,10 +540,10 @@ if (!class_exists('avia_newsbox'))
 				$image = get_the_post_thumbnail( $the_id, $image_size );
 			}
 
+			$time_format = apply_filters( 'avia_widget_time', get_option('date_format')." - ".get_option('time_format'), 'avia_newsbox' );
 
 
-
-			echo "<a class='news-link' title='".get_the_title()."' href='".$link."'>";
+        	echo "<a class='news-link' title='".get_the_title()."' href='".$link."'>";
 
 			$nothumb = (!$image) ? 'no-news-thumb' : '';
 
@@ -553,10 +553,11 @@ if (!class_exists('avia_newsbox'))
 			if(empty($avia_config['widget_image_size']) || 'display title and excerpt' != $excerpt)
 			{
 				echo "<strong class='news-headline'>".get_the_title();
+				echo "</strong>";
+			}
+			echo "</a>";
 
-      }
-
-			if('display title and excerpt' == $excerpt)
+			if( 'display title and excerpt' == $excerpt )
 			{
 				echo "<div class='news-excerpt'>";
 
@@ -660,13 +661,17 @@ if (!class_exists('avia_newsbox'))
 				<select class="widefat" id="<?php echo $this->get_field_id('excerpt'); ?>" name="<?php echo $this->get_field_name('excerpt'); ?>">
 					<?php
 					$list = "";
-					$answers = array(__('show title only', 'avia_framework'),__('display title and excerpt', 'avia_framework'));
-					foreach ($answers as $answer)
+					$answers = array(
+								'show title only'			=>	__( 'show title only', 'avia_framework' ),
+								'display title and excerpt'	=>	__('display title and excerpt', 'avia_framework')
+								);
+
+					foreach ( $answers as $key => $answer )
 					{
 						$selected = "";
-						if($answer == $excerpt) $selected = 'selected="selected"';
+						if( $key == $excerpt ) $selected = 'selected="selected"';
 
-						$list .= "<option $selected value='$answer'>$answer</option>";
+						$list .= "<option $selected value='$key'>$answer</option>";
 					}
 					$list .= "</select>";
 					echo $list;

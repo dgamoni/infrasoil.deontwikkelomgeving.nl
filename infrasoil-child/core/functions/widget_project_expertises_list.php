@@ -5,7 +5,7 @@ class Project_Expertises_List extends WP_Widget {
 	/** constructor */
 	function __construct() {
 
-		parent::WP_Widget( false, $name = __( 'Project Expertises list', TEXTDOMAIN ) );
+		parent::WP_Widget( false, $name = __( 'Project Expertises', TEXTDOMAIN ) );
 
 	}
 
