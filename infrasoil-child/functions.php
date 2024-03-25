@@ -60,3 +60,11 @@ add_filter('avf_social_icons_options','avia_add_custom_social_icon', 10, 1);
 
 // dgamoni
 require_once 'core/load.php'; 
+
+// add_action( 'init', 'add_anuncios_to_json_api', 30 );
+// function add_anuncios_to_json_api(){
+//     global $wp_post_types;
+//     $wp_post_types['portfolio']->show_in_rest = true;
+//     $wp_post_types['portfolio']->rest_base = 'portfolio';
+//     $wp_post_types['portfolio']->rest_controller_class = 'WP_REST_Posts_Controller';
+// }

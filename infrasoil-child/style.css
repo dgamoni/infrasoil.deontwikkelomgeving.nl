@@ -492,3 +492,551 @@ width: 10%;
     width: 65px !important;
   }
   }
+
+.project_expertises_icon {
+    background-image: url("core/image/sprite.png");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-WERKVELDEN-1 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -5px;
+}
+
+.sprite-WERKVELDEN-10 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -49px;
+}
+
+.sprite-WERKVELDEN-11 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -93px;
+}
+
+.sprite-WERKVELDEN-12 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -137px;
+}
+
+.sprite-WERKVELDEN-13 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -181px;
+}
+
+.sprite-WERKVELDEN-14 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -225px;
+}
+
+.sprite-WERKVELDEN-15 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -269px;
+}
+
+.sprite-WERKVELDEN-16 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -313px;
+}
+
+.sprite-WERKVELDEN-17 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -357px;
+}
+
+.sprite-WERKVELDEN-18 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -401px;
+}
+
+.sprite-WERKVELDEN-19 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -445px;
+}
+
+.sprite-WERKVELDEN-2 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -489px;
+}
+
+.sprite-WERKVELDEN-20 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -533px;
+}
+
+.sprite-WERKVELDEN-21 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -577px;
+}
+
+.sprite-WERKVELDEN-22 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -621px;
+}
+
+.sprite-WERKVELDEN-23 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -665px;
+}
+
+.sprite-WERKVELDEN-24 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -709px;
+}
+
+.sprite-WERKVELDEN-25 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -753px;
+}
+
+.sprite-WERKVELDEN-26 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -797px;
+}
+
+.sprite-WERKVELDEN-27 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -841px;
+}
+
+.sprite-WERKVELDEN-28 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -885px;
+}
+
+.sprite-WERKVELDEN-29 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -929px;
+}
+
+.sprite-WERKVELDEN-3 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -973px;
+}
+
+.sprite-WERKVELDEN-30 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1017px;
+}
+
+.sprite-WERKVELDEN-31 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1061px;
+}
+
+.sprite-WERKVELDEN-32 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1105px;
+}
+
+.sprite-WERKVELDEN-33 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1149px;
+}
+
+.sprite-WERKVELDEN-34 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1193px;
+}
+
+.sprite-WERKVELDEN-4 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1237px;
+}
+
+.sprite-WERKVELDEN-5 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1281px;
+}
+
+.sprite-WERKVELDEN-6 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1325px;
+}
+
+.sprite-WERKVELDEN-7 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1369px;
+}
+
+.sprite-WERKVELDEN-8 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1413px;
+}
+
+.sprite-WERKVELDEN-9 {
+    width: 35px;
+    height: 34px;
+    background-position: -5px -1457px;
+}
+
+.widget.biq_project_expertises_icons {
+
+}
+.av_one_fourth.searchandfilter_sidebar {
+    margin-left: 2%;
+}
+.searchandfilter_content_map {
+
+}
+.gmap {
+    margin-bottom: 50px;
+}
+/*big*/
+div .av_one_sixth_custom {
+    width: 18%;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+.expertises_title {
+    font-weight: bold;
+}
+.sprite_big {
+    background-image: url("core/image/spritebig.png");
+    background-repeat: no-repeat;
+    display: block;
+    transform: scale(0.8);
+    margin-left: -20px;
+    margin-bottom: -50px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-1 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -5px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-2 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -275px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-3 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -545px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-4 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -815px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-5 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -1085px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-6 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -1355px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-7 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -1625px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-8 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -1895px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-9 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -2165px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-10 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -2435px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-11 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -2705px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-12 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -2975px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-13 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -3245px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-14 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -3515px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-15 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -3785px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-16 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -4055px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-17 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -4325px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-18 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -4595px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-19 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -4865px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-20 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -5135px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-21 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -5405px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-22 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -5675px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-23 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -5945px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-24 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -6215px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-25 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -6485px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-26 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -6755px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-27 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -7025px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-28 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -7295px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-29 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -7565px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-30 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -7835px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-31 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -8105px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-32 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -8375px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-33 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -8645px;
+}
+
+.sprite_big-WERKVELDEN-NUMMERING-34 {
+    width: 263px;
+    height: 260px;
+    background-position: -5px -8915px;
+}
+
+.gm-style .gm-style-iw {
+/*    top: 0 !important;
+    left: 0 !important;*/
+}
+.infowin {
+    width: 200px;
+}
+.infowin_img_wrap {
+    /*background-color: #4BB7E8;*/
+}
+.infowin_img_wrap {
+    text-align: center;
+}
+.infowin_title {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.infowin_excerpt {
+    text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+.infowin_img img {
+    border-radius: 50%;
+}
+.expertlist_tile {
+    font-weight: bold;
+}
+.expertlist li {
+    list-style: none;
+}
+.expertlist_tile {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+#ui-datepicker-div {
+    width: 243px;
+}
+
+.project_expertises_list {
+        margin-left: 16px;
+}
+.biq_project_tile {
+    margin-left: 10px;
+}
+.biq_project_tile h2 {
+    color: #4bb6e8;
+}
+/*.gm-style-iw {
+    width: 200px !important;
+    top: 15px !important;
+    left: 0px !important;
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+    border: 1px solid rgba(72, 181, 233, 0.6);
+    border-radius: 2px 2px 10px 10px;
+}
+#iw-container {
+    margin-bottom: 10px;
+}
+#iw-container .iw-title {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    padding: 10px;
+    background-color: #48b5e9;
+    color: white;
+    margin: 0;
+    border-radius: 2px 2px 0 0;
+}
+#iw-container .iw-content {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    margin-right: 1px;
+    padding: 15px 5px 20px 15px;
+    max-height: 140px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.iw-content img {
+    float: right;
+    margin: 0 5px 5px 10px; 
+}
+.iw-subTitle {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 5px 0;
+}
+.iw-bottom-gradient {
+    position: absolute;
+    width: 326px;
+    height: 25px;
+    bottom: 10px;
+    right: 18px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}*/

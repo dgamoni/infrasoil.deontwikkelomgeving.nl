@@ -1,6 +1,6 @@
 <?php 
 /*
-Template Name: Project
+Template Name: Project map
 */
 
 if ( !defined('ABSPATH') ){ die(); }
@@ -24,17 +24,26 @@ global $avia_config;
 
 			<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
-			<?php echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>
+
+			<div class="flex_column av_three_fourth searchandfilter_content_map flex_column_div av-zero-column-padding first  avia-builder-el-0  el_before_av_one_fourth  avia-builder-el-first  " style="border-radius:0px; ">
+
+				<div class="gmap embed-responsive embed-responsive-4by3">
+					<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZxxN1Pd-fnDs7muHZQDc9njhlbrzIA5g&v=3.exp&libraries=places,drawing,geometry"></script> -->
+					<div id="g_map" style="width:896px; height: 600px;margin: 0px;padding: 0px;"></div>
+				</div>
+
+				<?php echo do_shortcode('[searchandfilter id="1595" show="results"]'); ?>
+			</div>
 
                 <?php
 	                // $avia_config['size'] = avia_layout_class( 'main' , false) == 'fullsize' ? 'entry_without_sidebar' : 'entry_with_sidebar';
 	                // get_template_part( 'includes/loop', 'page' );
                 ?>
 
-<div class="flex_column av_one_fourth searchandfilter_sidebar flex_column_div av-zero-column-padding   avia-builder-el-3  el_after_av_three_fourth  avia-builder-el-last  " style="border-radius:0px; ">
-	<h2>Project zoeken</h2>
-	<?php echo do_shortcode('[searchandfilter id="1441"]'); ?>
-</div>
+			<div class="flex_column av_one_fourth searchandfilter_sidebar flex_column_div av-zero-column-padding   avia-builder-el-3  el_after_av_three_fourth  avia-builder-el-last  " style="border-radius:0px; ">
+				<h2>Project zoeken</h2>
+				<?php echo do_shortcode('[searchandfilter id="1595"]'); ?>
+			</div>
 
 
 			<!--end content-->
