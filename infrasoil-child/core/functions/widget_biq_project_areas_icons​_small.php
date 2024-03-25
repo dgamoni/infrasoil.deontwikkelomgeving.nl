@@ -1,11 +1,11 @@
 <?php
 
-class Biq_Project_Expertises_Icons_small extends WP_Widget {
+class Biq_Project_Areas_Icons_small extends WP_Widget {
 
 	/** constructor */
 	function __construct() {
 
-		parent::WP_Widget( false, $name = __( 'Small Project Expertises icons​', TEXTDOMAIN ) );
+		parent::WP_Widget( false, $name = __( 'Small Project Areas icons​', TEXTDOMAIN ) );
 
 	}
 
@@ -27,26 +27,34 @@ class Biq_Project_Expertises_Icons_small extends WP_Widget {
 			<?php 
 
 				$args = array(
-					'taxonomy' => 'project_expertises',
+					'taxonomy' => 'project_areas',
 					'hide_empty' => false,
 				);
 				$terms = get_terms( $args );
-				$term_list = wp_get_post_terms(get_the_ID(), 'project_expertises', array("fields" => "all"));
+				$term_list = wp_get_post_terms(get_the_ID(), 'project_areas', array("fields" => "all"));
 				//var_dump($terms);
 
 				foreach ($term_list as $key => $term) { 
-					$infrasoil_expertises_icon = get_field('infrasoil_expertises_icon_small','project_expertises_'.$term->term_id);
+					$infrasoil_expertises_icon = get_field('infrasoil_expertises_icon_small','project_areas_'.$term->term_id);
+					$infrasoil_expertises_link = get_field('infrasoil_expertises_link','project_areas_'.$term->term_id);
 					//var_dump($infrasoil_expertises_icon);
 					$keys = $key+1;
 					?>
 					<div class="_flex_column av_one_sixth_custom2">
 					    <!-- $term->count -->
 						<!-- <div class="project_expertises_icon sprite-WERKVELDEN-<?php echo $key+1; ?>"> -->
-						<div class="project_expertises_icon2 <?php if( !$infrasoil_expertises_icon ): echo 'project_expertises_icon sprite-WERKVELDEN-'.$keys; endif;?>">
-							<?php if( $infrasoil_expertises_icon ): ?>
-								<img src="<?php echo $infrasoil_expertises_icon; ?>" />
-							<?php endif; ?>
-						</div>
+						<?php if($infrasoil_expertises_link):
+							echo '<a href="'.$infrasoil_expertises_link.'">';
+						 endif; ?>
+							<div class="project_expertises_icon2 <?php if( !$infrasoil_expertises_icon ): echo 'project_expertises_icon sprite-WERKVELDEN-'.$keys; endif;?>">
+								<?php if( $infrasoil_expertises_icon ): ?>
+									<img src="<?php echo $infrasoil_expertises_icon; ?>" />
+								<?php endif; ?>
+							</div>
+						<?php if($infrasoil_expertises_link):
+							echo '</a>';
+						 endif; ?>
+
 						<!-- <span class="expertises_title"><?php echo $term->name; ?></span> -->
 					</div>
 				<?php }
@@ -79,4 +87,4 @@ class Biq_Project_Expertises_Icons_small extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', create_function( '', 'return register_widget("Biq_Project_Expertises_Icons_small");' ) );
+add_action( 'widgets_init', create_function( '', 'return register_widget("Biq_Project_Areas_Icons_small");' ) );

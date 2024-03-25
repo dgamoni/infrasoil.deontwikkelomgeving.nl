@@ -22,6 +22,10 @@ global $avia_config;
 
 		<div class='container'>
 
+		<?php if ( function_exists('yoast_breadcrumb') ) {
+			yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+		} ?>
+
 			<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
 			<?php //echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>

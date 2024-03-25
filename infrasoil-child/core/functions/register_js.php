@@ -22,4 +22,11 @@ function product_scripts_method() {
 
 	wp_register_style('bootstrap_css', CORE_URL .'/css/bootstrap.min_custom.css', array(),null, 'all');
 	wp_enqueue_style('bootstrap_css');
+
+
+	wp_register_script('snazzy_info_window_js', CORE_URL . '/js/snazzy-info-window.min.js', array('jquery'), '', true);
+	wp_enqueue_script( 'snazzy_info_window_js' );
+
+	wp_register_style('snazzy_info_window', CORE_URL .'/css/snazzy-info-window.css', array(),null, 'all');
+	wp_enqueue_style('snazzy_info_window');
 } 

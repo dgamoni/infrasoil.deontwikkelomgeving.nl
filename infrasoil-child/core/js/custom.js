@@ -2,6 +2,9 @@ var map, term_id;
 
 jQuery(document).ready(function($){
 
+// $(document).on('mousenter', 'div.gmap', function() {
+//     // do something
+// });
 
 //$('.sf-input-date').val();
 // $("#dp1492335925907").on("dp.change", function(e) {
@@ -30,6 +33,16 @@ if ($(".sf-input-date").exists()) {
 	});
 }
 
+
+
+// $(document).on('input change', '.dat_0', function() {
+//     console.log('.dat_0 changed');
+// });
+
+// $('.dat_0').focus(function(){
+//     console.log("focus");
+// });
+
 	// $.ajaxSetup({
 
 	//     dataFilter: function (data, type) {
@@ -48,6 +61,20 @@ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     var originalSuccess = options.success;
     options.success = function (data) {
 		if(checkurl(options.url)){
+
+			// if(getUrlVars('_sfm_infrasoil_project_date_start',options.url)) {
+			// 	console.log(getUrlVars('_sfm_infrasoil_project_date_start',options.url));			
+			// 	console.log(getUrlVars('_sfm_infrasoil_project_date_start',options.url).split('+'));
+			// 	var sfm_infrasoil_project_date_start = getUrlVars('_sfm_infrasoil_project_date_start',options.url).split('+');
+			// 	if(sfm_infrasoil_project_date_start[1] == ''){
+			// 		console.log('setup');
+			// 		//console.log(options.url);
+			// 		//options.url = options.url+'&_sfm_infrasoil_project_date_start='+sfm_infrasoil_project_date_start[0]+'+'+sfm_infrasoil_project_date_start[0];
+			// 		console.log(options.url);
+			// 	}
+			// }
+
+
 	        //var res = $.parseJSON(data);
 	        //console.log(data.results);
 	        var reshtml = $.parseHTML(data.results);
@@ -67,6 +94,21 @@ function checkurl(url) {
 	} else  {
 		return false
 	}
+};
+
+function getUrlVars(sParam, url) {
+    var sPageURL = decodeURIComponent(url.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
 };
 
 function get_coord_element(element) {
@@ -89,8 +131,15 @@ function get_coord_element(element) {
 	x.clean(undefined);
 	console.log(x);
 
+	//var bounds = [];
+	//setMapOnAll(null);
+	 
+
 	if (x.length !== 0 && x.length !== 1) {
-	//console.log('!==1');console.log(x);	
+	//console.log('!==1');console.log(x);
+
+	hideMarker();
+
 		var latlngbounds = new google.maps.LatLngBounds();
 
 		for (var i = 0; i < x.length; i++) {
@@ -103,13 +152,18 @@ function get_coord_element(element) {
 			var myLatLng = new google.maps.LatLng(lat,lng);
 			latlngbounds.extend(myLatLng);
 
+			showMarker(myLatLng);
 		}
 		map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
 
 	}
 	else if (x.length == 1) {
+
+	hideMarker();
+
 		//console.log('==1');console.log(x);
 		var latlngbounds = new google.maps.LatLngBounds();
+
 		var b = x[0].replace('[','').replace(']',''),
 			bspl = b.split(','),
 			lat = bspl[0],
@@ -117,10 +171,29 @@ function get_coord_element(element) {
 		var myLatLng = new google.maps.LatLng(lat,lng);
 		map.panTo(myLatLng);
 		map.setZoom(17);
+		//console.log(map.getBounds().contains(myLatLng));
+		showMarker(myLatLng);
 
 	}else {
 		//console.log('else');console.log(x);
 	}
+}
+
+function hideMarker() {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setVisible(false);
+    //console.log(markers[i].getPosition());
+  }
+}
+
+function showMarker(myLatLng) {
+  for (var i = 0; i < markers.length; i++) {
+    //console.log(markers[i].getPosition());
+    if (markers[i].getPosition().equals(myLatLng)) {
+    	//console.log(markers[i].getPosition()+'true');
+    	markers[i].setVisible(true);
+    }
+  }
 }
 
 
@@ -226,7 +299,347 @@ function get_coord() {
 				disableDefaultUI: false,
 				scaleControl    : false,
 				scrollwheel     : false,
-				mapTypeId		: 'hybrid'
+				mapTypeId		: 'satellite'
+			}
+			// var map = new google.maps.Map(document.getElementById('g_map'), mapOptions);
+			// setMarkers(map, places);
+			if (document.getElementById("g_map")) {
+				map = new google.maps.Map(document.getElementById("g_map"),
+					mapOptions);
+				//map.setOptions({styles: blueOceanStyles});
+
+				jQuery.ajax({
+					url     : '/wp-admin/admin-ajax.php',
+					type    : 'POST',
+					dataType: 'json',
+					data    : {
+						'action': 'get_firms_places',
+						//'term_id': term_id
+					},
+					success : function (response) {
+						console.log(response);
+						places = response;
+						setMarkers(map, places);
+					}
+
+
+				});
+			}
+
+			var map_marker;
+			var markers_location = [];
+
+			function Label2(opt_options) {
+				this.setValues(opt_options);
+				var div = this.div_ = document.createElement('div');
+				div.style.cssText = 'position: absolute; display: none';
+			}
+			;
+			Label2.prototype = new google.maps.OverlayView;
+			Label2.prototype.onAdd = function () {
+				var pane = this.getPanes();
+				pane.overlayImage.appendChild(this.div_);
+				var me = this;
+				this.listeners_ = [
+					google.maps.event.addListener(this, 'position_changed',
+						function () {
+							me.draw();
+						}),
+					google.maps.event.addListener(this, 'text_changed',
+						function () {
+							me.draw();
+						})
+				];
+			};
+			Label2.prototype.onRemove = function () {
+				this.div_.parentNode.removeChild(this.div_);
+				for (var i = 0, I = this.listeners_.length; i < I; ++i) {
+					google.maps.event.removeListener(this.listeners_[i]);
+				}
+			};
+			Label2.prototype.draw = function () {
+				var projection = this.getProjection();
+				var position = projection.fromLatLngToDivPixel(this.get('position'));
+				var div = this.div_;
+				div.className = 'gm_i_thumb';
+				div.style.left = position.x + 'px';
+				div.style.top = position.y + 'px';
+				div.style.display = 'block';
+				div.style.background = 'transparent';
+				div.style.position = 'absolute';
+				div.style.paddingLeft = '0px';
+				div.style.cursor = 'pointer';
+				div.style.width = '28px';
+				div.style.height = '38px';
+				div.style.marginTop = '-38px';
+				div.style.marginLeft = '-14px';
+				div.style.zIndex = '999';
+				if (this.get('text')) {
+					this.div_.innerHTML = this.get('text').toString();
+				}
+			};
+
+
+
+
+			function setMarkers(map, locations) {
+				var latlngbounds = new google.maps.LatLngBounds();
+				// var image = new google.maps.MarkerImage('',
+				// 	new google.maps.Size(72, 72),
+				// 	new google.maps.Point(0, 0),
+				// 	new google.maps.Point(0, 37));
+				var image = {
+			        url: js_url.imgurl+'marker.png', 
+			    };
+
+	var closeDelayed = false;
+    var closeDelayHandler = function() {
+        $(marker.info.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            marker.info.close();
+        }, 300);
+    };
+
+				for (var i = 0; i < places.length; i++) {
+					var myLatLng = new google.maps.LatLng(locations[i][1], locations[i][2], locations[i][3]);
+					latlngbounds.extend(myLatLng);
+					//console.log(locations[i][5]);
+					if(locations[i][5]) {
+						image = {
+					        url: js_url.imgurl+'map-big-project.png', 
+					    };
+					} else {
+						image = {
+					        url: js_url.imgurl+'marker.png', 
+					    };						
+					}
+					var marker = new google.maps.Marker({
+						position : myLatLng,
+						map      : map,
+						icon     : image,
+						draggable: false,
+						img      : locations[i][3],
+						clickable: true
+					});
+
+
+//SnazzyInfoWindow
+
+    // Add a Snazzy Info Window to the marker
+    marker.info = new SnazzyInfoWindow({
+        marker: marker,
+        wrapperClass: 'custom-window',
+        panOnOpen: true,
+        // offset: {
+        //     //top: '-72px'
+        // },
+        // edgeOffset: {
+        //     top: 50,
+        //     right: 60,
+        //     bottom: 50
+        // },
+        //border: false,
+        //closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+		content: locations[i][4],
+        // callbacks: {
+        //     open: function() {
+        //         $(this.getWrapper()).addClass('open');
+        //     },
+        //     afterOpen: function() {
+        //         var wrapper = $(this.getWrapper());
+        //         wrapper.addClass('active');
+        //         wrapper.find('.custom-close').on('click', closeDelayHandler);
+        //     },
+        //     beforeClose: function() {
+        //         if (!closeDelayed) {
+        //             closeDelayHandler();
+        //             return false;
+        //         }
+        //         return true;
+        //     },
+        //     afterClose: function() {
+        //         var wrapper = $(this.getWrapper());
+        //         wrapper.find('.custom-close').off();
+        //         wrapper.removeClass('open');
+        //         closeDelayed = false;
+        //     }
+        // }
+    });
+
+					// marker.info = new google.maps.InfoWindow({
+					//   maxWidth: 200,
+					//   content: locations[i][4],
+					// });
+
+					marker.setAnimation(google.maps.Animation.DROP);
+					var label2 = new Label2({
+						map: map
+					});
+					label2.bindTo('position', marker, 'position');
+					label2.bindTo('text', marker, 'img');
+
+					markers.push(marker);
+
+					google.maps.event.addListener(marker, 'click', function() {  
+					    // this = marker
+					    var marker_map = this.getMap();
+					    //this.info.open(marker_map);
+					    //console.log(marker_map);
+						hideAllInfoWindows(map);
+					     this.info.open(marker_map, this);
+					    // Note: If you call open() without passing a marker, the InfoWindow will use the position specified upon construction through the InfoWindowOptions object literal.
+					});
+
+
+
+
+						  // *
+						  // START INFOWINDOW CUSTOMIZE.
+						  // The google.maps.event.addListener() event expects
+						  // the creation of the infowindow HTML structure 'domready'
+						  // and before the opening of the infowindow, defined styles are applied.
+						  // *
+
+						  google.maps.event.addListener(marker.info, 'domready', function() {
+
+						    // Reference to the DIV that wraps the bottom of infowindow
+						    var iwOuter = $('.gm-style-iw');
+
+						    /* Since this div is in a position prior to .gm-div style-iw.
+						     * We use jQuery and create a iwBackground variable,
+						     * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+						    */
+						    var iwBackground = iwOuter.prev();
+
+						    // Removes background shadow DIV
+						    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+
+						    // Removes white background DIV
+						    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+						    // Moves the infowindow 115px to the right.
+						    //iwOuter.parent().parent().css({maxWidth: '200px !important'});
+						    iwOuter.parent().parent().css({left: '40px'});
+
+						    // Moves the shadow of the arrow 76px to the left margin.
+						    iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+						    // Moves the arrow 76px to the left margin.
+						    iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+						    // Changes the desired tail shadow color.
+						    iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+						    // Reference to the div that groups the close button elements.
+						    var iwCloseBtn = iwOuter.next();
+
+						    // Apply the desired effect to the close button
+						    //iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
+						    iwCloseBtn.css({ right: '53px', top: '16px'});
+
+						    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+						    if($('.iw-content').height() < 140){
+						      $('.iw-bottom-gradient').css({display: 'none'});
+						    }
+
+						    // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+						    // iwCloseBtn.mouseout(function(){
+						    //   $(this).css({opacity: '1'});
+						    // });
+						  });
+
+					} //end for
+			} //end setMarker
+
+			function hideAllInfoWindows(map) {
+			   markers.forEach(function(marker) {
+			     marker.info.close(map, marker);
+			  }); 
+			};
+
+			//Resize Function
+			google.maps.event.addDomListener(window, "resize", function() {
+				var center = map.getCenter();
+				resizeMap();
+				google.maps.event.trigger(map, "resize");
+				map.setCenter(center);
+			});
+
+			// google.maps.event.addListener(map, 'click', function() {
+			//     if (marker.info) {
+			//         marker.info.close();
+			//     }
+			// });
+
+			function resizeMap(){
+
+			  var h = window.innerHeight;
+			  var w = window.innerWidth;
+			  var gmap_w = $(".searchandfilter_content_map").width();
+			  console.log(gmap_w);
+			  $("#g_map").width(gmap_w);
+			  //$("#g_map").height(h-50);
+
+			}
+
+			resizeMap();
+
+		} //end initialize
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+	} // end map
+
+
+// g_map_widget
+
+	var places = [];
+	var markers = [];
+	//window.map;
+
+	if ($(".g_map_widget").exists()) {
+		function initialize_widget() {
+			//var term_id = $('.map_office').attr('data-term-id');
+			//console.log("init term = " + term_id);
+			
+			// var beginmap = $('#gmap_portugal');
+			// beginmap_Lat = beginmap.data('lat') !== '' ? parseFloat(beginmap.data('lat')) : '';
+			// console.log(beginmap_Lat);
+			// beginmap_Long = beginmap.data('lng') !== '' ? parseFloat(beginmap.data('lng')) : '';
+			$portugal_Lat = '52.04498589999999';
+			$portugal_Long = '5.566772399999991';
+
+			var blueOceanStyles = [
+			  {
+			    featureType: "all",
+			    stylers: [
+			      { saturation: -80 }
+			    ]
+			  },{
+			    featureType: "road.arterial",
+			    elementType: "geometry",
+			    stylers: [
+			      { hue: "#00ffee" },
+			      { saturation: 50 }
+			    ]
+			  },{
+			    featureType: "poi.business",
+			    elementType: "labels",
+			    stylers: [
+			      { visibility: "off" }
+			    ]
+			  }
+			];
+			
+			var mapOptions = {
+				zoom            : 8,
+				center          : new google.maps.LatLng($portugal_Lat, $portugal_Long),
+				disableDefaultUI: false,
+				scaleControl    : false,
+				scrollwheel     : false,
+				mapTypeId		: 'satellite'
 			}
 			// var map = new google.maps.Map(document.getElementById('g_map'), mapOptions);
 			// setMarkers(map, places);
@@ -340,10 +753,18 @@ function get_coord() {
 						img      : locations[i][3],
 						clickable: true
 					});
-					marker.info = new google.maps.InfoWindow({
-					  maxWidth: 200,
-					  content: locations[i][4]
-					});
+					// marker.info = new google.maps.InfoWindow({
+					//   maxWidth: 200,
+					//   content: locations[i][4]
+					// });
+
+    // Add a Snazzy Info Window to the marker
+    marker.info = new SnazzyInfoWindow({
+        marker: marker,
+        wrapperClass: 'custom-window',
+        panOnOpen: true,
+		content: locations[i][4],
+    });
 
 					marker.setAnimation(google.maps.Animation.DROP);
 					var label2 = new Label2({
@@ -374,51 +795,54 @@ function get_coord() {
 						  // and before the opening of the infowindow, defined styles are applied.
 						  // *
 
-						  // google.maps.event.addListener(marker.info, 'domready', function() {
+						  google.maps.event.addListener(marker.info, 'domready', function() {
 
-						  //   // Reference to the DIV that wraps the bottom of infowindow
-						  //   var iwOuter = $('.gm-style-iw');
+						    // Reference to the DIV that wraps the bottom of infowindow
+						    var iwOuter = $('.gm-style-iw');
 
-						  //   /* Since this div is in a position prior to .gm-div style-iw.
-						  //    * We use jQuery and create a iwBackground variable,
-						  //    * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
-						  //   */
-						  //   var iwBackground = iwOuter.prev();
+						    /* Since this div is in a position prior to .gm-div style-iw.
+						     * We use jQuery and create a iwBackground variable,
+						     * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+						    */
+						    var iwBackground = iwOuter.prev();
 
-						  //   // Removes background shadow DIV
-						  //   iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+						    // Removes background shadow DIV
+						    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
 
-						  //   // Removes white background DIV
-						  //   iwBackground.children(':nth-child(4)').css({'display' : 'none'});
 
-						  //   // Moves the infowindow 115px to the right.
-						  //   iwOuter.parent().parent().css({left: '40px'});
+						    // Removes white background DIV
+						    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
 
-						  //   // Moves the shadow of the arrow 76px to the left margin.
-						  //   iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+						    // Moves the infowindow 115px to the right.
+						    //iwOuter.parent().parent().css({maxWidth: '200px !important'});
+						    iwOuter.parent().parent().css({left: '40px'});
 
-						  //   // Moves the arrow 76px to the left margin.
-						  //   iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+						    // Moves the shadow of the arrow 76px to the left margin.
+						    iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
 
-						  //   // Changes the desired tail shadow color.
-						  //   iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+						    // Moves the arrow 76px to the left margin.
+						    iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
 
-						  //   // Reference to the div that groups the close button elements.
-						  //   //var iwCloseBtn = iwOuter.next();
+						    // Changes the desired tail shadow color.
+						    iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
 
-						  //   // Apply the desired effect to the close button
-						  //   //iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
+						    // Reference to the div that groups the close button elements.
+						    var iwCloseBtn = iwOuter.next();
 
-						  //   // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-						  //   if($('.iw-content').height() < 140){
-						  //     $('.iw-bottom-gradient').css({display: 'none'});
-						  //   }
+						    // Apply the desired effect to the close button
+						    //iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
+						    iwCloseBtn.css({ right: '53px', top: '16px'});
 
-						  //   // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
-						  //   // iwCloseBtn.mouseout(function(){
-						  //   //   $(this).css({opacity: '1'});
-						  //   // });
-						  // });
+						    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+						    if($('.iw-content').height() < 140){
+						      $('.iw-bottom-gradient').css({display: 'none'});
+						    }
+
+						    // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+						    // iwCloseBtn.mouseout(function(){
+						    //   $(this).css({opacity: '1'});
+						    // });
+						  });
 
 					} //end for
 			} //end setMarker
@@ -432,6 +856,7 @@ function get_coord() {
 			//Resize Function
 			google.maps.event.addDomListener(window, "resize", function() {
 				var center = map.getCenter();
+				resizeMap();
 				google.maps.event.trigger(map, "resize");
 				map.setCenter(center);
 			});
@@ -442,15 +867,24 @@ function get_coord() {
 			//     }
 			// });
 
-		
+			function resizeMap(){
+
+			  var h = window.innerHeight;
+			  var w = window.innerWidth;
+			  var gmap_w = $(".project_mapwidget").width();
+			  console.log(gmap_w);
+			  $("#g_map").width(gmap_w);
+			  //$("#g_map").height(h-50);
+
+			}
+
+			resizeMap();
+
 		} //end initialize
 
-		google.maps.event.addDomListener(window, 'load', initialize);
+		google.maps.event.addDomListener(window, 'load', initialize_widget);
 
 	} // end map
-
-
-
 	/**
 	 * click sidebar go to map
 	 */

@@ -32,9 +32,14 @@ function get_firms_places() {
 		$lng               = $google_coordinats['lng'];
 
 		$excerpt = get_the_excerpt();
-		$img = get_the_post_thumbnail( get_the_ID(), 'thumbnail' );
+		$img = get_the_post_thumbnail( get_the_ID(), array(130,130) );
 		$link = get_post_permalink( get_the_ID() );
 		$infrasoil_project_rate = get_field( 'infrasoil_project_rate', get_the_ID() );
+		if($infrasoil_project_rate) {
+			$infrasoil_bigproject = 'infrasoil_bigproject';
+		} else {
+			$infrasoil_bigproject = '';
+		}
 
 		// $args_tax = array(
 		// 	'taxonomy' => 'project_expertises',
@@ -45,7 +50,7 @@ function get_firms_places() {
 		$project_expertises = '<ul class="expertlist">';
 		$project_expertises .= '<p class="expertlist_tile">Expertises</p>';
 		foreach ($term_list as $key => $term) { 
-			$project_expertises .= '<li>- '.$term.'</li>';
+			$project_expertises .= '<li>'.$term.'</li>';
 		}
 		$project_expertises .= '</ul>';
 
@@ -55,14 +60,14 @@ function get_firms_places() {
 				$lat,
 				$lng,
 				'<span class="gmap_point"></span>',
-				'<a class="infowin_link" href="'.$link.'">
+				'<a id="hook" class="infowin_link" href="'.$link.'">
 					<div class="infowin">
-						<div class="infowin_img_wrap">
+						<div class="infowin_img_wrap '.$infrasoil_bigproject.'">
 							<span class="infowin_img">'.$img.'</span>
-						</div>
-						<div class="infowin_text_wrap">
 							<p class="infowin_title">'.get_the_title().'</p>
 							<p class="infowin_excerpt">'.$excerpt.'</p>
+						</div>
+						<div class="infowin_text_wrap">
 							<p class="infowin_expertises">'.$project_expertises.'</p>
 						</div>
 					</div>

@@ -22,12 +22,16 @@ global $avia_config;
 
 		<div class='container'>
 
+			<?php if ( function_exists('yoast_breadcrumb') ) {
+				yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+			} ?>
+		
 			<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
 
 			<div class="flex_column av_three_fourth searchandfilter_content_map flex_column_div av-zero-column-padding first  avia-builder-el-0  el_before_av_one_fourth  avia-builder-el-first  " style="border-radius:0px; ">
 
-				<div class="gmap embed-responsive embed-responsive-4by3">
+				<div class="gmap _embed-responsive _embed-responsive-4by3">
 					<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZxxN1Pd-fnDs7muHZQDc9njhlbrzIA5g&v=3.exp&libraries=places,drawing,geometry"></script> -->
 					<div id="g_map" style="width:896px; height: 600px;margin: 0px;padding: 0px;"></div>
 				</div>

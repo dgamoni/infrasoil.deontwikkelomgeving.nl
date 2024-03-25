@@ -24,7 +24,7 @@ class Project_Mapwidget extends WP_Widget {
 
 		?>
 		<div class="flex_column project_mapwidget">
-			<div class="gmap embed-responsive embed-responsive-4by3">
+			<div class="g_map_widget _embed-responsive _embed-responsive-4by3">
 				<div id="g_map" style="width:<?php echo $width_;?>px; height: 600px;margin: 0px;padding: 0px;"></div>
 			</div>
 		</div>
