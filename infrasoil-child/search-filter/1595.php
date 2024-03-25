@@ -63,7 +63,7 @@
 			//$output .= $setmap;
 			//$output .= $coord;
 
-			$output .= "<div data-ajax-id='".$the_id."' data-lat='".$lat."' data-lng='".$lng."' class='coord grid-entry flex_column isotope-item all_sort no_margin ".$post_class."  av_one_third  default_av_fullwidth'>";
+			$output .= "<div data-ajax-id='".$the_id."' data-lat='".$lat."' data-lng='".$lng."' class='coord grid-entry flex_column isotope-item all_sort no_margin ".$post_class."  av_one_fourth _av_one_third  default_av_fullwidth'>";
 				$output .= "<article class='main_color inner-entry' itemscope='itemscope' itemtype='https://schema.org/CreativeWork'>";
 			        //$output .= $infrasoil_project_location_1["lat"];
 			        //$output .= $infrasoil_project_location_1["lng"];

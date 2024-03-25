@@ -32,7 +32,7 @@ global $avia_config;
 					<div id="g_map" style="width:896px; height: 600px;margin: 0px;padding: 0px;"></div>
 				</div>
 
-				<?php echo do_shortcode('[searchandfilter id="1595" show="results"]'); ?>
+				<?php //echo do_shortcode('[searchandfilter id="1595" show="results"]'); ?>
 			</div>
 
                 <?php
@@ -41,10 +41,13 @@ global $avia_config;
                 ?>
 
 			<div class="flex_column av_one_fourth searchandfilter_sidebar flex_column_div av-zero-column-padding   avia-builder-el-3  el_after_av_three_fourth  avia-builder-el-last  " style="border-radius:0px; ">
-				<h2>Project zoeken</h2>
+				<h3 class="search_filter_title">Project zoeken:</h3>
 				<?php echo do_shortcode('[searchandfilter id="1595"]'); ?>
 			</div>
 
+			<div class="flex_column _av_three_fourth searchandfilter_content_map flex_column_div av-zero-column-padding first  avia-builder-el-0  el_before_av_one_fourth  avia-builder-el-first  " style="border-radius:0px; ">
+				<?php echo do_shortcode('[searchandfilter id="1595" show="results"]'); ?>
+			</div>
 
 			<!--end content-->
 			</main>

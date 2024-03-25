@@ -24,18 +24,19 @@ global $avia_config;
 
 			<main class='template-page content  <?php avia_layout_class( 'content' ); ?> units' <?php avia_markup_helper(array('context' => 'content','post_type'=>'page'));?>>
 
-			<?php echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>
+			<?php //echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>
 
                 <?php
 	                // $avia_config['size'] = avia_layout_class( 'main' , false) == 'fullsize' ? 'entry_without_sidebar' : 'entry_with_sidebar';
 	                // get_template_part( 'includes/loop', 'page' );
                 ?>
 
-<div class="flex_column av_one_fourth searchandfilter_sidebar flex_column_div av-zero-column-padding   avia-builder-el-3  el_after_av_three_fourth  avia-builder-el-last  " style="border-radius:0px; ">
-	<h2>Project zoeken</h2>
-	<?php echo do_shortcode('[searchandfilter id="1441"]'); ?>
-</div>
+			<div class="flex_column av_one_fourth searchandfilter_sidebar flex_column_div av-zero-column-padding   avia-builder-el-3  el_after_av_three_fourth  avia-builder-el-last  " style="border-radius:0px; ">
+				<h3 class="search_filter_title">Project zoeken:</h3>
+				<?php echo do_shortcode('[searchandfilter id="1441"]'); ?>
+			</div>
 
+			<?php echo do_shortcode('[searchandfilter id="1441" show="results"]'); ?>
 
 			<!--end content-->
 			</main>

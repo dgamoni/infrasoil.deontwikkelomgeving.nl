@@ -16,6 +16,10 @@ function product_scripts_method() {
     );
 
 	//wp_localize_script( 'product_scripts', 'localize_var', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+
 	// wp_register_style('product_css', CORE_URL .'/css/product.css', array(),null, 'all');
 	// wp_enqueue_style('product_css');
+
+	wp_register_style('bootstrap_css', CORE_URL .'/css/bootstrap.min_custom.css', array(),null, 'all');
+	wp_enqueue_style('bootstrap_css');
 } 

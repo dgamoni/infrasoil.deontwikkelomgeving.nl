@@ -183,6 +183,7 @@ function get_coord() {
 
 
 	var places = [];
+	var markers = [];
 	//window.map;
 
 	if ($(".gmap").exists()) {
@@ -224,14 +225,15 @@ function get_coord() {
 				center          : new google.maps.LatLng($portugal_Lat, $portugal_Long),
 				disableDefaultUI: false,
 				scaleControl    : false,
-				scrollwheel     : false
+				scrollwheel     : false,
+				mapTypeId		: 'hybrid'
 			}
 			// var map = new google.maps.Map(document.getElementById('g_map'), mapOptions);
 			// setMarkers(map, places);
 			if (document.getElementById("g_map")) {
 				map = new google.maps.Map(document.getElementById("g_map"),
 					mapOptions);
-				map.setOptions({styles: blueOceanStyles});
+				//map.setOptions({styles: blueOceanStyles});
 
 				jQuery.ajax({
 					url     : '/wp-admin/admin-ajax.php',
@@ -306,6 +308,7 @@ function get_coord() {
 
 
 
+
 			function setMarkers(map, locations) {
 				var latlngbounds = new google.maps.LatLngBounds();
 				// var image = new google.maps.MarkerImage('',
@@ -319,6 +322,16 @@ function get_coord() {
 				for (var i = 0; i < places.length; i++) {
 					var myLatLng = new google.maps.LatLng(locations[i][1], locations[i][2], locations[i][3]);
 					latlngbounds.extend(myLatLng);
+					//console.log(locations[i][5]);
+					if(locations[i][5]) {
+						image = {
+					        url: js_url.imgurl+'map-big-project.png', 
+					    };
+					} else {
+						image = {
+					        url: js_url.imgurl+'marker.png', 
+					    };						
+					}
 					var marker = new google.maps.Marker({
 						position : myLatLng,
 						map      : map,
@@ -339,11 +352,14 @@ function get_coord() {
 					label2.bindTo('position', marker, 'position');
 					label2.bindTo('text', marker, 'img');
 
+					markers.push(marker);
 
 					google.maps.event.addListener(marker, 'click', function() {  
 					    // this = marker
 					    var marker_map = this.getMap();
 					    //this.info.open(marker_map);
+					    //console.log(marker_map);
+						hideAllInfoWindows(map);
 					     this.info.open(marker_map, this);
 					    // Note: If you call open() without passing a marker, the InfoWindow will use the position specified upon construction through the InfoWindowOptions object literal.
 					});
@@ -407,6 +423,26 @@ function get_coord() {
 					} //end for
 			} //end setMarker
 
+			function hideAllInfoWindows(map) {
+			   markers.forEach(function(marker) {
+			     marker.info.close(map, marker);
+			  }); 
+			};
+
+			//Resize Function
+			google.maps.event.addDomListener(window, "resize", function() {
+				var center = map.getCenter();
+				google.maps.event.trigger(map, "resize");
+				map.setCenter(center);
+			});
+
+			// google.maps.event.addListener(map, 'click', function() {
+			//     if (marker.info) {
+			//         marker.info.close();
+			//     }
+			// });
+
+		
 		} //end initialize
 
 		google.maps.event.addDomListener(window, 'load', initialize);

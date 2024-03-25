@@ -33,6 +33,8 @@ function get_firms_places() {
 
 		$excerpt = get_the_excerpt();
 		$img = get_the_post_thumbnail( get_the_ID(), 'thumbnail' );
+		$link = get_post_permalink( get_the_ID() );
+		$infrasoil_project_rate = get_field( 'infrasoil_project_rate', get_the_ID() );
 
 		// $args_tax = array(
 		// 	'taxonomy' => 'project_expertises',
@@ -53,16 +55,19 @@ function get_firms_places() {
 				$lat,
 				$lng,
 				'<span class="gmap_point"></span>',
-				'<div class="infowin">
-					<div class="infowin_img_wrap">
-						<span class="infowin_img">'.$img.'</span>
+				'<a class="infowin_link" href="'.$link.'">
+					<div class="infowin">
+						<div class="infowin_img_wrap">
+							<span class="infowin_img">'.$img.'</span>
+						</div>
+						<div class="infowin_text_wrap">
+							<p class="infowin_title">'.get_the_title().'</p>
+							<p class="infowin_excerpt">'.$excerpt.'</p>
+							<p class="infowin_expertises">'.$project_expertises.'</p>
+						</div>
 					</div>
-					<div class="infowin_text_wrap">
-						<p class="infowin_title">'.get_the_title().'</p>
-						<p class="infowin_excerpt">'.$excerpt.'</p>
-						<p class="infowin_expertises">'.$project_expertises.'</p>
-					</div>
-				</div>'
+				</a>',
+				$infrasoil_project_rate
 			);
 		}
 	endwhile;

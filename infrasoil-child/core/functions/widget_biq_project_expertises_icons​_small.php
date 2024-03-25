@@ -1,11 +1,11 @@
 <?php
 
-class Biq_Project_Expertises_Icons extends WP_Widget {
+class Biq_Project_Expertises_Icons_small extends WP_Widget {
 
 	/** constructor */
 	function __construct() {
 
-		parent::WP_Widget( false, $name = __( 'Big Project Expertises icons​', TEXTDOMAIN ) );
+		parent::WP_Widget( false, $name = __( 'Small Project Expertises icons​', TEXTDOMAIN ) );
 
 	}
 
@@ -18,36 +18,36 @@ class Biq_Project_Expertises_Icons extends WP_Widget {
 		// $link = $instance['link'];
 
 		?>
-		<div class="widget biq_project_expertises_icons">
+		<div class="widget biq_project_expertises_icons_small">
 			<div style="padding-bottom:10px;color:#273756;" class="av-special-heading av-special-heading-h2 custom-color-heading blockquote modern-quote modern-centered  avia-builder-el-14  el_before_av_portfolio  avia-builder-el-no-sibling  ">
-				<h1 class="av-special-heading-tag" itemprop="headline">
-					<span style="color: #4bb6e8;">WERK</span>VELDEN
-				</h1>
+				<h3 class="av-special-heading-tag" itemprop="headline">
+					<span style="color: #4bb6e8;">WERK</span> VELDEN
+				</h3>
 			</div>
 			<?php 
 
 				$args = array(
 					'taxonomy' => 'project_expertises',
 					'hide_empty' => false,
-					'orderby' => 'term_order'
 				);
 				$terms = get_terms( $args );
+				$term_list = wp_get_post_terms(get_the_ID(), 'project_expertises', array("fields" => "all"));
 				//var_dump($terms);
 
-				foreach ($terms as $key => $term) { 
-					$infrasoil_expertises_icon = get_field('infrasoil_expertises_icon','project_expertises_'.$term->term_id);
+				foreach ($term_list as $key => $term) { 
+					$infrasoil_expertises_icon = get_field('infrasoil_expertises_icon_small','project_expertises_'.$term->term_id);
 					//var_dump($infrasoil_expertises_icon);
 					$keys = $key+1;
-					//$term->count
 					?>
-					<div class="flex_column av_one_sixth_custom">
-						<!-- <div class="sprite_big sprite_big-WERKVELDEN-NUMMERING-<?php echo $term->count; ?>"> -->
-						<div class="sprite_big2 <?php if( !$infrasoil_expertises_icon ): echo 'sprite_big sprite_big-WERKVELDEN-NUMMERING-'.$keys; endif;?>">
+					<div class="flex_column av_one_sixth_custom2">
+					    <!-- $term->count -->
+						<!-- <div class="project_expertises_icon sprite-WERKVELDEN-<?php echo $key+1; ?>"> -->
+						<div class="project_expertises_icon2 <?php if( !$infrasoil_expertises_icon ): echo 'project_expertises_icon sprite-WERKVELDEN-'.$keys; endif;?>">
 							<?php if( $infrasoil_expertises_icon ): ?>
 								<img src="<?php echo $infrasoil_expertises_icon; ?>" />
 							<?php endif; ?>
 						</div>
-						<span class="expertises_title"><?php echo $term->name; ?></span>
+						<!-- <span class="expertises_title"><?php echo $term->name; ?></span> -->
 					</div>
 				<?php }
 			?>
@@ -79,4 +79,4 @@ class Biq_Project_Expertises_Icons extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', create_function( '', 'return register_widget("Biq_Project_Expertises_Icons");' ) );
+add_action( 'widgets_init', create_function( '', 'return register_widget("Biq_Project_Expertises_Icons_small");' ) );
