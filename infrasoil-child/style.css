@@ -146,12 +146,7 @@ width: 10%;
     border-top-left-radius: 7px;
     right: 0;
 }
-.av-masonry-entry-title{
-    color: #284474 !important;
-}
-.av-masonry-entry-content{
-    color: #284474 !important;
-}
+
  .current-portfolio-parent {
      font-weight: bold;
 }
@@ -274,15 +269,32 @@ width: 10%;
     margin-left: 1px;
     position: relative;
 }
+.page-id-14 .av-masonry a{
+    position: absolute !important;
+}
+.av-masonry{
+    overflow: visible !important;
+}
+.av-masonry a{
+    position: relative !important;
+}
 
+.av-masonry-entry-title{
+    color: #284474 !important;
+}
+.av-masonry-entry-content{
+    color: #284474 !important;
+}
 #masonry .avia-image-container-inner, #masonry .avia_image, #masonry .av-image-caption-overlay{
     border-radius: 0px;
 }
 #masonry .avia-image-container {
     display: block;
-    margin-left: 0px !important;
-    max-width: 99%;
     position: relative;
+    margin-left: 2px;
+}
+#masonry .avia-image-container-inner {
+    width: 100%;
 }
 #top div .avia-gallery .avia-gallery-big{
     border-style: solid;
@@ -454,6 +466,9 @@ width: 10%;
 @media only screen and (max-width: 767px) {
 .responsive #scroll-top-link {
   display: block!important;
+}
+.av-masonry{
+    display: none !important;
 }
 
 .single-portfolio .av_one_fourth .avia_textblock {

@@ -58,3 +58,5 @@ function avia_add_custom_social_icon($icons) {
 add_filter('avf_social_icons_options','avia_add_custom_social_icon', 10, 1);
 
 
+// dgamoni
+require_once 'core/load.php'; 
