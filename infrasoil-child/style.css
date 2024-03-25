@@ -1,0 +1,479 @@
+/*
+Theme Name: Infrasoil Child
+Description: -
+Version: 1.0
+Author: none
+Template: infrasoil
+*/
+/*Add your own styles here:*/
+
+.togglecontainer .single_toggle:first-child .toggler, .togglecontainer .taglist + .single_toggle .toggler {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    display: none;
+}
+.content{
+    padding-top:   30px;
+    padding-bottom: 30px;
+}
+h4 {
+    font-size: 16px;
+    line-height: 1em;
+    }
+#avia-fullwidth-slider #avia-caption-content{
+    float: right !important;
+}
+.av_phone_active_right .phone-info {
+    float: right;
+    font-weight: normal;
+    margin-top: 1.5px;
+    padding-bottom: 3px;
+}
+#top .social_bookmarks li {
+    border-right-width: 0px;
+}
+#top .social_bookmarks li a {
+    font-size: 18px;
+}
+.social_bookmarks_linkedin{
+    height: 32px !important
+}
+
+.social_icon_1 a {
+    margin-top: -2px !important;
+    padding-bottom: 2px !important;
+}
+.social_icon_3 a:hover  {
+    background-color: #4BB6E8 !important;
+    color: #fff !important;
+}
+#header_meta .sub_menu > ul > li > a, .sub_menu > div > ul > li > a {
+    background-color: #284474;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 13px;
+    padding: 5px 10px 5px;
+    border: 1px solid #284474;
+    font-weight: 600;
+}
+#header_meta .sub_menu > ul > li > a:hover, .sub_menu > div > ul > li > a:hover{
+    background-color: #fff;
+    text-decoration: none;
+    border: 1px solid #284474;
+}
+#header_meta .sub_menu > ul > li > a, .sub_menu > div > ul > li > a{
+    text-decoration: none !important;
+}
+
+.home #full_slider_1 .image-overlay {
+    background: none !important;
+}
+.home #full_slider_1 .slideshow_caption {
+    width: 100%;
+    top: 15%;
+}
+.home #full_slider_1 .slideshow_caption h2{
+      line-height: 1.5;
+}
+.home #full_slider_1 .avia-caption-title {
+    background: rgba(255, 255, 255, 0.5) none repeat scroll 0 0 !important;
+}
+.home #full_slider_1 .avia-caption-title{
+    color: #284474 !important;
+}
+.home div .slideshow_caption h2 {
+    text-transform: none !important;
+    font-style: italic !important;
+}
+.home .location_listing2{
+    display: none !important;
+}
+.home .location_pagination2{
+    display: none !important;
+}
+.avia-menu-text{
+    text-transform: uppercase;
+}
+.avia-menu-fx{
+    height: 4px;
+    border-color: #4BB7E8 !important;
+    background-color: #4BB7E8 !important;
+}
+#top #header_main > .container, #top #header_main > .container .main_menu ul:first-child > li > a, #top #header_main #menu-item-shop .cart_dropdown_link {
+    height: 53px;
+    line-height: 80px !important;
+}
+.container_wrap {
+    border-top-width: 0px;
+}
+.flex_column.av_one_fifth.first.avia-builder-el-first {
+margin-left: 0 !important;
+}
+.flex_column.av_one_fifth.first.avia-builder-el-last {
+margin-left: 6%;
+float: left;
+clear: none;
+margin-top: 0;
+}
+div .av_one_fifth {
+margin-left: 6%;
+width: 10%;
+}
+.single-portfolio .av_one_fourth .avia_textblock {
+    margin-left: 10px;
+}
+#top .av-caption-style-overlay .av-masonry-item-with-image .av-inner-masonry-content {
+    background: rgba(255, 255, 255, 0.75) none repeat scroll 0 0 !important;
+}
+#top .avia-post-nav {
+    background: rgba(75, 182, 232, 0.5) none repeat scroll 0 0;
+    color: #fff;
+    height: 110px;
+    margin-top: -55px;
+    padding: 15px;
+    position: fixed;
+    text-decoration: none;
+    top: 50%;
+    transform: translate3d(0px, 0px, 0px);
+    z-index: 501;
+}
+#top .avia-post-nav:hover{
+    background: rgba(75, 182, 232, 1) none repeat scroll 0 0;
+}
+
+.avia-post-next {
+    border-bottom-left-radius: 7px;
+    border-top-left-radius: 7px;
+    right: 0;
+}
+.av-masonry-entry-title{
+    color: #284474 !important;
+}
+.av-masonry-entry-content{
+    color: #284474 !important;
+}
+ .current-portfolio-parent {
+     font-weight: bold;
+}
+#expertises_home .avia-image-container.avia-align-center {
+      margin: 0 auto 0px !important;
+}
+#expertises_home .avia_image{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+#expertises_home .av-image-caption-overlay-center{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #284474;
+    opacity:0.8;
+    font-size: 14px !important;
+}
+#expertises_home .av-image-caption-overlay-center p{
+    opacity: 1;
+}
+
+#expertises_home .av_textblock_section{
+    background-color: #284474;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff !important;
+    font-weight: 600;
+}
+#expertises_home .av_textblock_section p{
+    margin: 0em;
+    min-height: 40px;
+}
+#team .flex_column {
+    background-color: #4BB6E8;
+    color: #fff !important;
+    padding: 0px;
+    border-radius: 10px !important;
+}
+#team img{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#team .av-image-caption-overlay-center{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #284474;
+    text-align: left;
+    padding: 10px;
+    font-size: 12px;
+    opacity:0.8;
+}
+#team .av-image-caption-overlay-center p{
+    opacity: 1;
+}
+#team .flex_column strong{
+    color: #fff !important;
+}
+#team .av_textblock_section p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+ #team .av_textblock_section em {
+    font-size: 13px !important;
+}
+#team .medewerker {
+    min-height: 70px;
+}
+#team .medewerker strong{
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.page-id-14 div .av_two_third {
+    margin-left: 2%;
+    width: 68.667%;
+}
+.page-id-14 .togglecontainer .av_one_third {
+    margin-left: 3%;
+    width: 29.4%;
+}
+.page-id-14 .togglecontainer .av_one_third.first {
+    margin-left: 0% !important;
+}
+.page-id-14 .avia_image {
+    border-radius: 10px;
+    display: block;
+    max-width: 100%;
+    position: relative;
+}
+
+.page-id-14 #toggle-id-2-container   {
+    display: none !important;
+}
+.page-id-14 .toggle_content{
+    background: #ffffff;
+}
+.page-id-14 .toggle_content {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-style: none solid solid;
+    border-top: medium none;
+    border-width: medium 0px 0px;
+    margin: 0 0 0px;
+    overflow: hidden;
+    padding: 0px 0px 0px;
+}
+.page-id-14 .grid-entry .inner-entry {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    margin-right: 1px;
+    margin-left: 1px;
+    position: relative;
+}
+
+#masonry .avia-image-container-inner, #masonry .avia_image, #masonry .av-image-caption-overlay{
+    border-radius: 0px;
+}
+#masonry .avia-image-container {
+    display: block;
+    margin-left: 0px !important;
+    max-width: 99%;
+    position: relative;
+}
+#top div .avia-gallery .avia-gallery-big{
+    border-style: solid;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-width: 0px;
+    display: block;
+    margin-bottom: -1px;
+    overflow: hidden;
+    padding: 0px;
+}
+#top div .avia-gallery img {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0;
+    float: left;
+    padding: 0px;
+    width: 100%;
+}
+.metaslider .flexslider.filmstrip{
+    margin-top: 0px !important;
+    border-radius: 0px !important;
+}
+.metaslider .flexslider .caption-wrap{
+    background: rgba(255, 255, 255, 0) !important;
+    font-size: 0px !important;
+    height: 100% !important;
+}
+.metaslider .flexslider .caption-wrap:hover {
+    display: block !important;
+    background: rgba(255, 255, 255, 0.75) none repeat scroll 0 0 !important;
+    border-radius: 0;
+    bottom: 0;
+    clear: none;
+    color: rgb(40, 69, 116);
+    left: 0;
+    margin: 0;
+    opacity: 1;
+    position: absolute;
+    right: auto;
+    text-align: center;
+    top: auto;
+    width: 100%;
+    height: 100% !important;
+    font-size: 18px !important;
+    font-weight: 600;
+}
+.metaslider .caption {
+    margin-top: 37.5%;
+    overflow-wrap: break-word;
+    padding: 5px 10px;
+}
+.metaslider .flexslider.filmstrip .slides li{
+    margin-right: 0px !important;
+}
+
+.av-special-heading-tag{
+    font-weight: bold !important;
+}
+.news-link a{
+    color: #fff !important;
+}
+#projecten_pagina .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+/*.grid-entry{
+  width: 23% !important;
+  margin-right: 2.5% !important;
+}
+*/
+.grid-entry .inner-entry {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.1) !important;
+    margin-right: 0px !important;
+    position: relative;
+}
+.grid-loop-4{
+    margin-right: 0px !important;
+}
+.grid-loop-8{
+    margin-right: 0px !important;
+}
+.grid-loop-12{
+    margin-right: 0px !important;
+}
+#project-light div .av_one_fourth {
+    margin-left: 0%;
+    width: 26.5%;
+}
+#parallax .avia-full-stretch {
+    background-size: auto !important;
+}
+.responsive .av-image-hotspot {
+    font-size: 11px;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+}
+.av-hotspot-container .av-image-hotspot_inner {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 100px;
+    color: #4bb6e8 !important;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    height: 100%;
+    position: absolute;
+    text-decoration: none;
+    width: 100%;
+    z-index: 2;
+}
+.av-hotspot-container .av-image-hotspot-pulse {
+    background: #4bb6e8 none repeat scroll 0 0;
+    height: 60px;
+    left: -15px;
+    top: -15px;
+    width: 60px;
+}
+#footer .wpgmp_map_container{
+    border: 0px !important;
+}
+.image_size_widget .news-thumb img {
+    width: 55px; height: 55px;
+    border-radius: 50px;
+}
+.footer_color table, .footer_color .widget_nav_menu ul:first-child > .current-menu-item, .footer_color .widget_nav_menu ul:first-child > .current_page_item, .footer_color .widget_nav_menu ul:first-child > .current-menu-ancestor, .footer_color .pagination .current, .footer_color .pagination a, .footer_color.iconbox_top .iconbox_content, .footer_color .av_promobox, .footer_color .toggle_content, .footer_color .toggler:hover, .footer_color .related_posts_default_image, .footer_color .search-result-counter, .footer_color .container_wrap_meta, .footer_color .avia-content-slider .slide-image, .footer_color .avia-slider-testimonials .avia-testimonial-content, .footer_color .avia-testimonial-arrow-wrap .avia-arrow, .footer_color .news-thumb, .footer_color .portfolio-preview-content, .footer_color .portfolio-preview-content .avia-arrow, .footer_color .av-magazine .av-magazine-entry-icon, .footer_color .related_posts.av-related-style-full a, .footer_color .aviaccordion-slide, .footer_color.avia-fullwidth-portfolio .pagination, .footer_color .isotope-item.special_av_fullwidth .av_table_col.portfolio-grid-image, .footer_color .av-catalogue-list li:hover, .footer_color .wp-playlist, .footer_color .avia-slideshow-fixed-height > li, .footer_color .avia-form-success{
+    background: none;
+}
+.image_size_widget .news-thumb {
+    height: 60px; width: 60px;
+    border: none;
+    background-color: none;
+}
+#contactmap .container{
+    max-width: 100% !important;
+    min-width: 100% !important;
+    padding: 0 !important;
+}
+#contactmap .content{
+    padding: 0 !important;
+}
+
+#footer .news-excerpt{
+    font-weight: normal;
+}
+.footer_color tr:nth-child(2n+1), .footer_color .pricing-table > li:nth-child(2n+1), .footer_color .pricing-extra{
+    background: none !important;
+}
+#footer tr:first-child th, tr:first-child td{
+    border-width: 0px !important;
+    padding: 0px !important;
+    width: 50px;
+}
+#footer td img{
+    height: 150px !important;
+}
+
+@media only screen and (min-width:768px) and (max-width: 1024px)  {
+
+.responsive #scroll-top-link {
+  display: block!important;
+}
+  .tabcontainer { display: none !important; }
+  .togglecontainer { display: block!important;
+}
+}
+
+@media only screen and (max-width: 767px) {
+.responsive #scroll-top-link {
+  display: block!important;
+}
+
+.single-portfolio .av_one_fourth .avia_textblock {
+    margin-left: 0px;
+}
+.grid-entry{
+    width: 100% !important;
+    margin-right: 0% !important;
+}
+.grid-loop-4{
+    margin-right: 0px !important;
+}
+.grid-loop-8{
+    margin-right: 0px !important;
+}
+.grid-loop-12{
+    margin-right: 0px !important;
+}
+#metaslider_1032_filmstrip.flexslider .slides li {
+    margin-right: 5px;
+    width: 65px !important;
+  }
+  }
